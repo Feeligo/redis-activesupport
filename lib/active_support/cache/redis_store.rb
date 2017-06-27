@@ -230,6 +230,10 @@ module ActiveSupport
         @data.reconnect if @data.respond_to?(:reconnect)
       end
 
+      def disconnect
+        @data.disconnect! if @data.respond_to?(:disconnect!)
+      end
+
       protected
         def write_entry(key, entry, options)
           method = options && options[:unless_exist] ? :setnx : :set
